@@ -1,5 +1,5 @@
 # webpack-react-less-babel
-自己搭建的reactJs基础项目
+自己搭建的reactJs基础项目环境，可以webpack热加载，支持autoprefixer，留作后用。
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
