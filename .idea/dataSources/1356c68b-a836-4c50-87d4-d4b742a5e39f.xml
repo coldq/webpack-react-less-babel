@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MySQL - blog@blog.fateworld.cn">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+    <schema id="1" name="blog">
+      <visible>1</visible>
+    </schema>
+    <schema id="2" name="information_schema"/>
+    <schema id="3" name="test"/>
+    <table id="4" parent="1" name="article"/>
+    <column id="5" parent="4" name="id">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="6" parent="4" name="file">
+      <mandatory>1</mandatory>
+      <data-type>varchar(20)|0</data-type>
+    </column>
+    <column id="7" parent="4" name="imgUrl">
+      <data-type>varchar(39)|0</data-type>
+    </column>
+    <column id="8" parent="4" name="create_data">
+      <data-type>timestamp|0</data-type>
+      <default-expression>CURRENT_TIMESTAMP</default-expression>
+    </column>
+    <column id="9" parent="4" name="title">
+      <mandatory>1</mandatory>
+      <data-type>varchar(29)|0</data-type>
+    </column>
+    <column id="10" parent="4" name="subtitle">
+      <data-type>varchar(33)|0</data-type>
+    </column>
+    <column id="11" parent="4" name="type">
+      <data-type>varchar(20)|0</data-type>
+    </column>
+    <key id="12" parent="4" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+  </database-model>
+</dataSource>
