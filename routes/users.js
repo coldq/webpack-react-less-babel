@@ -52,9 +52,9 @@ var writeFile = function (fileName,data) {
 var wrtAndSql = function* (sql,data,fileName) {   //generator函数，异步执行，消除callback，不能用ES7 的async/await，就用co代替
     try {
         var write = yield writeFile(fileName,data);
-        if(sql !=null){
+        if(sql != '')
             var insert = yield sqlOp(sql);
-        }
+
     }catch(err){
         return err;
     }
@@ -151,11 +151,12 @@ router.post('/:io', function(req, res, next) {
              //文件名
             let insertSQL;
             let file = './resource/'+req.body.fileDir+".md";
-            if(req.body.fileDir == 'new'){
+            console.log(req.body.fileDir == 'new');
+            if(req.body.fileDir != 'new'){
                 insertSQL= 'insert into article(file,imgUrl,title,subTitle,type) ' +
                     'values("'+req.body.fileDir+'","'+req.body.imgUrl+'","'+req.body.title+'","'+req.body.subTitle+'","'+req.body.type+'")';
             }else {
-              insertSQL=null;
+              insertSQL='';
             }
 
             console.log("sql:"+insertSQL);
