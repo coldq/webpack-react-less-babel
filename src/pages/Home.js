@@ -8,7 +8,7 @@ const Header = React.createClass({
 		return(
 			<div className="homeHeader">			
 				<img src={logo3} className="home-logo" alt="logo" />
-				<h1>Fate Wolrd</h1>
+				<h1>Fate World</h1>
 				<p>A Set of React Components that Implement
 				<br/>Google's Material Design </p>
 				

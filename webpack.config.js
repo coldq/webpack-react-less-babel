@@ -1,7 +1,7 @@
 
 var webpack = require('webpack');
 module.exports = {
-  devtool: 'eval-source-map',//配置生成Source Maps，选择合适的选项
+  devtool: 'eval-source-map',//配置生成Source Maps，选择合适的选项eval-source-map
 
   entry:  "./src/index.js",//已多次提及的唯一入口文件
   output: {
@@ -18,7 +18,7 @@ module.exports = {
   module: {
         loaders: [
         {
-          test: /\.js$/,
+          test: /\.(js|jsx)$/,
           exclude: /node_modules/,
           loader: 'babel',//在webpack的module部分的loaders里进行配置即可
         },
@@ -35,7 +35,7 @@ module.exports = {
           loader: "style!css!less?sourceMap!postcss"
         },
         {
-          test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
+          test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|cur)$/,
           loader: 'file'
         }
 
@@ -46,7 +46,17 @@ module.exports = {
   ],
 
  plugins: [
-    new webpack.HotModuleReplacementPlugin()//热加载插件
+    new webpack.HotModuleReplacementPlugin(),//热加载插件
+     // new webpack.optimize.UglifyJsPlugin({
+     //     mangle: {
+     //         warnings:false
+     //     }
+     // }),
+     // new webpack.DefinePlugin({
+     //     'process.env': {
+     //         'NODE_ENV': '"production"'
+     //     }
+     // })
   ],
   devServer: {
     contentBase: "./public",//本地服务器所加载的页面所在的目录

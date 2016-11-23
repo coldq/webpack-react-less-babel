@@ -6,12 +6,17 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import {List, ListItem} from 'material-ui/List';
 import ContentInbox from 'material-ui/svg-icons/content/inbox';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
-import ContentSend from 'material-ui/svg-icons/content/send';
-import ContentDrafts from 'material-ui/svg-icons/content/drafts';
+import BlackHouse from 'material-ui/svg-icons/action/fingerprint';
+import Secret from 'material-ui/svg-icons/action/lock';
+import Java from 'material-ui/svg-icons/action/build';
+import Javascript from 'material-ui/svg-icons/av/airplay';
+import Life from 'material-ui/svg-icons/av/games';
+import Front from 'material-ui/svg-icons/content/gesture';
+import Else from 'material-ui/svg-icons/hardware/toys';
 import Divider from 'material-ui/Divider';
 import ActionInfo from 'material-ui/svg-icons/action/info';
 import {Link} from 'react-router';
-import '../font/material-icons.css'
+import '../fonts/material-icons.css'
 
 const styles = {
   appBar:{
@@ -19,8 +24,16 @@ const styles = {
   }
 };
 /*
-* 侧边栏+头栏组件
+* 文章类别
  */
+const types = ["Javascript","Java","Front","Life","Else"];
+const icon ={
+    Java:<Java />,
+    Javascript:<Javascript/>,
+    Front:<Front/>,
+    Life:<Life/>,
+    Else:<Else/>
+}
 export default class MyDrawer extends React.Component {
 
     constructor(props) {
@@ -87,7 +100,23 @@ export default class MyDrawer extends React.Component {
 
 
     render() {
+        var typeDraw = types.map(
+            (type) => {
 
+
+                let arr = new Array;
+                if(this.state.bigWidth)
+                    arr.push(<ListItem key={type} primaryText={type}
+                                   containerElement={<Link to={"/blog/list/"+type}/>}
+                                   leftIcon={icon[type]} />)
+                else
+                    arr.push(<ListItem key={type} primaryText={type}
+                                       containerElement={<Link to={"/blog/list/"+type}/>}
+                                       onTouchTap={this.handleClose}
+                                       leftIcon={icon[type]} />)
+                return arr;
+            }
+        )
         if(this.state.bigWidth ){
             return (
                 <div>
@@ -106,18 +135,21 @@ export default class MyDrawer extends React.Component {
                                       onTouchTap={this.handleClose}
                                       containerElement={<Link to="/"/>}/>
                             <ListItem primaryText="目录" leftIcon={<ActionGrade />}
-                                      containerElement={<Link to="/blog/list/1"/>}/>
-                            <ListItem primaryText="文章test" leftIcon={<ContentSend />}
-                                      containerElement={<Link to="/blog/article/1"/>}/>
-                            <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />}/>
-                            <ListItem primaryText="Inbox" leftIcon={<ContentInbox />}/>
+                                      containerElement={<Link to={"/blog/list/all"}/>}
+                                      nestedItems={typeDraw}/>
+
+                            <ListItem primaryText="Secret" leftIcon={<Secret />}
+                                      containerElement={<Link to={"/blog/login/a/new"}/>} />
+                            <ListItem primaryText="小黑屋"
+                                      containerElement={<Link to={"/blog/login/b/new"}/>}
+                                      leftIcon={<BlackHouse />}/>
                         </List>
                         <Divider />
                         <List>
-                            <ListItem primaryText="All mail" rightIcon={<ActionInfo />}/>
-                            <ListItem primaryText="Trash" rightIcon={<ActionInfo />}/>
-                            <ListItem primaryText="Spam" rightIcon={<ActionInfo />}/>
-                            <ListItem primaryText="Follow up" rightIcon={<ActionInfo />}/>
+                            <ListItem primaryText="关于我" rightIcon={<ActionInfo />}/>
+                            <ListItem primaryText="Github"
+                                      onTouchTap={this.github}
+                                      rightIcon={<ActionInfo />}/>
                         </List>
                     </Drawer>
                 </div>
@@ -144,23 +176,27 @@ export default class MyDrawer extends React.Component {
                             <ListItem primaryText="首页" leftIcon={<ContentInbox />}
                                       onTouchTap={this.handleClose}
                                       containerElement={<Link to="/"/>}/>
-                            <ListItem primaryText="Starred" leftIcon={<ActionGrade />}
-                                      onTouchTap={ this.handleClose}
-                                      containerElement={<Link to="/blog/list/1"/>}/>
-                            <ListItem primaryText="文字" leftIcon={<ContentSend />}
-                                      onTouchTap={ this.handleClose}
-                                      containerElement={<Link to="/blog/article/1"/>}/>
-                            <ListItem primaryText="Drafts" leftIcon={<ContentDrafts />}
-                                      onTouchTap={this.handleClose}/>
-                            <ListItem primaryText="Inbox" leftIcon={<ContentInbox />}
+                            <ListItem primaryText="目录" leftIcon={<ActionGrade />}
+                                      containerElement={<Link to={"/blog/list/all"}/>}
+                                      nestedItems={typeDraw}
+                            />
+
+                            <ListItem primaryText="Secret" leftIcon={<Secret />}
+                                      onTouchTap={this.handleClose}
+                                      containerElement={<Link to={"/blog/login/a"}/>}
+                            />
+
+                            <ListItem primaryText="小黑屋" leftIcon={<BlackHouse />}
+                                      containerElement={<Link to={"/blog/login/b"}/>}
                                       onTouchTap={ this.handleClose}/>
                         </List>
                         <Divider />
                         <List>
-                            <ListItem primaryText="All mail" rightIcon={<ActionInfo />}/>
-                            <ListItem primaryText="Trash" rightIcon={<ActionInfo />}/>
-                            <ListItem primaryText="Spam" rightIcon={<ActionInfo />}/>
-                            <ListItem primaryText="Follow up" rightIcon={<ActionInfo />}/>
+                            <ListItem primaryText="关于我" rightIcon={<ActionInfo />}/>
+                            <ListItem primaryText="Github"
+                                      onTouchTap={this.github}
+                                      rightIcon={<ActionInfo />}
+                            />
                         </List>
                     </Drawer>
                 </div>

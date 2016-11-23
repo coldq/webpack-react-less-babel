@@ -21,7 +21,9 @@
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "less-loader": "^2.2.3",
+    "markdown": "^0.5.0",
     "marked": "^0.3.6",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
@@ -30,7 +32,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --progress",
-    "build": "webpack  --progress",
+    "build": "set NODE_ENV=production &&  webpack --progress -p",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }

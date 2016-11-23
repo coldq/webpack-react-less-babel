@@ -6,6 +6,7 @@ import Paper from 'material-ui/Paper';
 import CircularProgress from 'material-ui/CircularProgress';
 import  'whatwg-fetch';
 import '../styles/markdown.css'
+import {hashHistory} from 'react-router'
 var marked = require('marked');
 
 const styles = {
@@ -17,8 +18,17 @@ const styles = {
         marginTop:20,
     },
     circularprogress:{
-
         paddingTop:"30%",
+
+    },
+    link: {
+        color:'rgba(51, 51, 51, 0.44)',
+        fontSize:15,
+    },
+    bottoms:{
+        padding:20,
+        paddingLeft:'5%',
+        textAlign:'left',
 
     }
 
@@ -31,18 +41,33 @@ export default class Article extends Component{
     constructor(props) {
         super(props);
         this.state = { loading: true, error: null, data: null};
+        this._goRewrite=this._goRewrite.bind(this);
     }
     componentDidMount(){
+        this.fetchArticle();
 
-        let url = 'https://raw.githubusercontent.com/coldq/hemems/gh-pages/resource/'+
-            this.props.params.file+".md"
-        fetch(url).then(
-            response =>response.text()
+    }
+    fetchArticle(){
+        let url = 'http://localhost:3001/users/getArticle';
+        fetch(url,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+                },
+            body:JSON.stringify({
+                file:this.props.params.file
+            }),
+        }).then(
+            response =>response.json()
         ).then(
             data => this.setState({loading: false, data: data}),
         ).catch(
             error => this.setState({loading: false, error: error})
         );
+    }
+    _goRewrite(){
+        hashHistory.push('/blog/login/b/'+this.props.params.file)
     }
     render(){
 
@@ -55,12 +80,21 @@ export default class Article extends Component{
             return <span>Error: {this.state.error.message}</span>;
         }
         else {
-            var markdown = {__html:marked(this.state.data)};
+            var markdown = {__html:marked(this.state.data.content)};
             // console.log(marked.parser(marked.lexer(this.state.data)))
             return(
+                <div>
+
                 <Paper style={styles.paper} zDepth={3} rounded={false}>
+
+                    <h1>{this.state.data.title}</h1>
+                    <hr />
                     <div className="markdown-body"dangerouslySetInnerHTML={markdown} />
                 </Paper>
+                    <div style={styles.bottoms}>
+                        <a style={styles.link} onClick={this._goRewrite}>修改</a>
+                    </div>
+                </div>
             );
         }
     }
