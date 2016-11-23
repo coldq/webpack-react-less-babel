@@ -14,24 +14,25 @@
     </column>
     <column id="6" parent="4" name="file">
       <mandatory>1</mandatory>
-      <data-type>varchar(20)|0</data-type>
+      <data-type>varchar(255)|0</data-type>
     </column>
     <column id="7" parent="4" name="imgUrl">
-      <data-type>varchar(39)|0</data-type>
+      <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="8" parent="4" name="create_data">
+    <column id="8" parent="4" name="create_time">
+      <mandatory>1</mandatory>
       <data-type>timestamp|0</data-type>
       <default-expression>CURRENT_TIMESTAMP</default-expression>
     </column>
     <column id="9" parent="4" name="title">
       <mandatory>1</mandatory>
-      <data-type>varchar(29)|0</data-type>
+      <data-type>varchar(255)|0</data-type>
     </column>
     <column id="10" parent="4" name="subtitle">
-      <data-type>varchar(33)|0</data-type>
+      <data-type>varchar(255)|0</data-type>
     </column>
     <column id="11" parent="4" name="type">
-      <data-type>varchar(20)|0</data-type>
+      <data-type>varchar(255)|0</data-type>
     </column>
     <key id="12" parent="4" name="PRIMARY">
       <columns>id</columns>
