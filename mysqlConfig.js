@@ -2,7 +2,7 @@
  * Created by cold on 2016/11/19.
  */
 var config = {
-    host: "blog.fateworld.cn",
+    host: "localhost",
     user: "root",
     password: "root",
     database: "blog"
