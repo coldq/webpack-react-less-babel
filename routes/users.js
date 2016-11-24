@@ -52,8 +52,7 @@ var writeFile = function (fileName,data) {
 var wrtAndSql = function* (sql,data,fileName) {   //generator函数，异步执行，消除callback，不能用ES7 的async/await，就用co代替
     try {
         var write = yield writeFile(fileName,data);
-        if(sql != '')
-            var insert = yield sqlOp(sql);
+        var insert = yield sqlOp(sql);
 
     }catch(err){
         return err;
@@ -62,10 +61,10 @@ var wrtAndSql = function* (sql,data,fileName) {   //generator函数，异步执�
     return write;
 };
 var readAndSql = function* (sql,fileName) {
-
     try {
         var file = yield readFile(fileName);
-        var result = yield sqlOp(sql)
+        if(sql != '')
+            var result = yield sqlOp(sql)
     }catch(err){
         return err;
     }
@@ -152,11 +151,11 @@ router.post('/:io', function(req, res, next) {
             let insertSQL;
             let file = './resource/'+req.body.fileDir+".md";
             console.log(req.body.fileDir == 'new');
-            if(req.body.fileDir != 'new'){
+            if(req.body.ope != 'update'){
                 insertSQL= 'insert into article(file,imgUrl,title,subTitle,type) ' +
                     'values("'+req.body.fileDir+'","'+req.body.imgUrl+'","'+req.body.title+'","'+req.body.subTitle+'","'+req.body.type+'")';
             }else {
-              insertSQL='';
+              insertSQL='update article set imgUrl="'+req.body.imgUrl+'",title=""'+req.body.title+'",subTitle="'+req.body.subTitle+'",type="'+req.body.type+'"  where file="'+req.body.fileDir+'"';
             }
 
             console.log("sql:"+insertSQL);
