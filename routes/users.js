@@ -155,7 +155,7 @@ router.post('/:io', function(req, res, next) {
                 insertSQL= 'insert into article(file,imgUrl,title,subTitle,type) ' +
                     'values("'+req.body.fileDir+'","'+req.body.imgUrl+'","'+req.body.title+'","'+req.body.subTitle+'","'+req.body.type+'")';
             }else {
-              insertSQL='update article set imgUrl="'+req.body.imgUrl+'",title=""'+req.body.title+'",subTitle="'+req.body.subTitle+'",type="'+req.body.type+'"  where file="'+req.body.fileDir+'"';
+              insertSQL='update article set imgUrl="'+req.body.imgUrl+'",title="'+req.body.title+'",subTitle="'+req.body.subTitle+'",type="'+req.body.type+'"  where file="'+req.body.fileDir+'"';
             }
 
             console.log("sql:"+insertSQL);
