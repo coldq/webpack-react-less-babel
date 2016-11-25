@@ -20,7 +20,7 @@ const MdEditor = React.createClass({
   componentDidMount () {
     // cache dom node
     this.textControl = this.refs.editor;
-    if(this.props.content !=undefined){
+    if(this.props.content !=undefined && this.props.content != null){
       this.textControl.value=this.props.content;
       this.setState({result:marked(this.props.content)});
     }

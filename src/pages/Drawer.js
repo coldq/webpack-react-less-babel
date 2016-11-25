@@ -135,7 +135,7 @@ export default class MyDrawer extends React.Component {
                                       onTouchTap={this.handleClose}
                                       containerElement={<Link to="/"/>}/>
                             <ListItem primaryText="目录" leftIcon={<ActionGrade />}
-                                      containerElement={<Link to={"/blog/list/all"}/>}
+                                      containerElement={<Link to={"/blog/list/all/1"}/>}
                                       nestedItems={typeDraw}/>
 
                             <ListItem primaryText="Secret" leftIcon={<Secret />}
@@ -177,17 +177,17 @@ export default class MyDrawer extends React.Component {
                                       onTouchTap={this.handleClose}
                                       containerElement={<Link to="/"/>}/>
                             <ListItem primaryText="目录" leftIcon={<ActionGrade />}
-                                      containerElement={<Link to={"/blog/list/all"}/>}
+                                      containerElement={<Link to={"/blog/list/all/1"}/>}
                                       nestedItems={typeDraw}
                             />
 
                             <ListItem primaryText="Secret" leftIcon={<Secret />}
                                       onTouchTap={this.handleClose}
-                                      containerElement={<Link to={"/blog/login/a"}/>}
+                                      containerElement={<Link to={"/blog/login/a/new"}/>}
                             />
 
                             <ListItem primaryText="小黑屋" leftIcon={<BlackHouse />}
-                                      containerElement={<Link to={"/blog/login/b"}/>}
+                                      containerElement={<Link to={"/blog/login/b/new"}/>}
                                       onTouchTap={ this.handleClose}/>
                         </List>
                         <Divider />

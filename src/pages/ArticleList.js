@@ -7,6 +7,7 @@ import {Link} from 'react-router'
 import  'whatwg-fetch';
 import Paper from 'material-ui/Paper';
 import CircularProgress from 'material-ui/CircularProgress';
+import {hashHistory} from 'react-router'
 
 const styles = {
     paper:{
@@ -31,6 +32,10 @@ const styles = {
     div:{
         display: 'inline-block',
         width:'100%'
+    },
+    pagebar:{
+        margin:'auto',
+        width:"70%",
     }
 
 };
@@ -45,13 +50,16 @@ export default  class  ArticleList extends Component{
             type: null,
             loading:true,
             error: null,
-            data: null};
+            data: null,
+            count:null,
+        };
+
     }
     fetchList(){
         let url = 'http://localhost:3001/users/getList';
         let params = new Object;
         params.type = this.props.params.type;
-        params.page = 1;
+        params.page = this.props.params.page;
         fetch(url,
             {
                 method: 'POST',
@@ -64,36 +72,62 @@ export default  class  ArticleList extends Component{
         ).then(
             data => {
                 this.setState({loading: false, data: data});
-                console.log(data)
             }
         ).catch(
             error => this.setState({loading: false, error: error})
         );
     }
+    fetchCount(){
+        let url = 'http://localhost:3001/users/getCount';
+        let params = new Object;
+        params.type = this.props.params.type;
+        fetch(url,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify(params),
+            }).then(
+            response =>response.json()
+        ).then(
+            data => {
+                this.setState({count: data.count});
+                // console.log(data)
+            }
+        ).catch(
+            error => this.setState({error: error})
+        );
+    }
     componentDidMount(){
         this.fetchList();
+        this.fetchCount();
     }
     /*
     *
     * 路径参数改变时，引起下面事件WillReceiveProps
     * */
     componentDidUpdate(prevProps){
-        console.log("prev:"+prevProps.params.type)
-        console.log("update:"+this.props.params.type+"\n");
-        for(var i in this.props.params){
-            console.log('this:'+i+':'+this.props.params[i]);
-        }
+        // console.log("prev:"+prevProps.params.type)
+        // console.log("update:"+this.props.params.type+"\n");
+        // for(var i in this.props.params){
+        //     console.log('this:'+i+':'+this.props.params[i]);
+        // }
 
-        if(prevProps.params.type !== this.props.params.type){
+        if(prevProps.params.type !== this.props.params.type
+        || prevProps.params.page !== this.props.params.page){
             this.fetchList();
         }
 
     }
+    _changePage(page){
+         hashHistory.push('/blog/list/'+this.props.params.type+'/'+page)
+    }
 
     render(){
-        function isArray(obj) {
-            return Object.prototype.toString.call(obj) === '[object Array]';
-        }
+        // function isArray(obj) {
+        //     return Object.prototype.toString.call(obj) === '[object Array]';
+        // }
         if(this.state.loading){
             return <Paper style={styles.paper} zDepth={3} rounded={false}>
                 <CircularProgress style={styles.circularprogress} size={150} thickness={5} /></Paper>;
@@ -113,12 +147,31 @@ export default  class  ArticleList extends Component{
                         )
                     }
                 )
+            var arr=[];
+            for(let i=1; i <= Math.ceil(this.state.count/5);i++){
+                arr.push(i)
+            }
             // }else
             //     var articleList = <PaperList key={this.state.data.id} data = {this.state.data}/>
 
             return (
                 <div style={styles.div}>
                     {articleList}
+                    <div style={styles.pagebar}>
+                        {this.state.count==null||
+                        <ul className="pagination">
+
+                            {
+                                arr.map((item)=>{
+                                    return <li key={item}><a onClick=
+
+                                    {this._changePage.bind(this,item)} >{item}</a></li>
+                                })
+                            }
+
+                        </ul>}
+                    </div>
+
                 </div>
             );
         }
@@ -126,19 +179,19 @@ export default  class  ArticleList extends Component{
 }
  class PaperList extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            expanded: false,
-        };
-        this.handleExpandChange = this.handleExpandChange.bind(this);
+    // constructor(props) {
+    //     super(props);
+    //     // this.state = {
+    //     //     expanded: false,
+    //     // };
+    //     // this.handleExpandChange = this.handleExpandChange.bind(this);
+    //
+    //
+    // }
 
-
-    }
-
-    handleExpandChange(expanded) {
-        this.setState({expanded: expanded});
-    };
+    // handleExpandChange(expanded) {
+    //     this.setState({expanded: expanded});
+    // };
 
 
 
@@ -146,9 +199,28 @@ export default  class  ArticleList extends Component{
         return (
             <Paper style={styles.paperlist} zDepth={5}>
                 <h1 ><Link to={'/blog/article/'+this.props.data.file}>{this.props.data.title}</Link></h1>
-                <p fontSize={20}>{this.props.data.subtitle}</p>
+                <p fontSize={20}>{this.props.data.subTitle}</p>
                 <p>{this.props.data.create_time.substr(0, 9)}</p>
             </Paper>
         );
     }
 }
+
+//分页条
+// class PageBars extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.state={
+//             currentPage:1,
+//             pageLength:5,
+//         }
+//
+//     }
+//     //
+//     render(){
+//
+//         return(
+//            <p></p>
+//         )
+//     }
+// }

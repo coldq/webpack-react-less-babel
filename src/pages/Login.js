@@ -26,20 +26,23 @@ export default class Login extends Component{
         this.props.params.type == 'a'?hashHistory.push('/'):hashHistory.push('/blog/fuckworld/'+this.props.params.file)
     }
     handleSubmit() {
-        const pass = document.getElementById("passs").value
+        const gg = document.getElementById("gg").value
 
-        if (pass === 'coldwjj')
-            this.setState({ login: true })
+        if (gg === 'coldwjj'){
+            this.setState({ login: true });
+            this.replaceUrl();
+        }
+
         else
             this.setState({ login: false })
-        console.log("login:"+this.state.login)
+        // console.log("login:"+this.state.login)
     }
 
         render() {
             return (
                 <form >
                     <TextField
-                        id="passs"
+                        id="gg"
                         hintText="Password Field"
                         floatingLabelText="Password"
                         type="password"
@@ -51,11 +54,12 @@ export default class Login extends Component{
                         primary={true}
                         style={styles.button}
                         onTouchTap={this.handleSubmit}
+                        onKeyUp = {this.handleSubmit}
                     />
                     <br />
 
 
-                    {this.state.login &&(
+                    {/*{this.state.login &&(
                         <RaisedButton
                             label="欢迎来到 new World"
                             labelPosition="before"
@@ -66,7 +70,7 @@ export default class Login extends Component{
 
                             )
 
-                    }
+                    }*/}
                 </form>
             )
         }

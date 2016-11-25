@@ -88,7 +88,7 @@ export default class Article extends Component{
                 <Paper style={styles.paper} zDepth={3} rounded={false}>
 
                     <h1>{this.state.data.title}</h1>
-                    <hr />
+
                     <div className="markdown-body"dangerouslySetInnerHTML={markdown} />
                 </Paper>
                     <div style={styles.bottoms}>

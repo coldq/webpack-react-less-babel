@@ -46,6 +46,9 @@ const styles = {
         marginLeft:20,
         marginTop: 40,
         float:'left',
+    },
+    div:{
+        padding:10
     }
 };
 
@@ -59,7 +62,10 @@ export default class Write extends Component{
             loading:false,
             error:null,
             data :null,
-            loadingA:true,
+            loadingA:false,
+            title:"",
+            subTitle:"",
+            imgUrl:""
         };
     }
 
@@ -71,7 +77,7 @@ export default class Write extends Component{
         // cache dom node
         if(this.props.params.file != 'new'){
             this.setState({loadingA: true});
-            let url = 'http://localhost:3001/users/getArticle';
+            let url = 'http://localhost:3001/users/getArticle'; //
             fetch(url,
                 {
                     method: 'POST',
@@ -86,9 +92,9 @@ export default class Write extends Component{
             ).then(
                 data => {
                     this.setState({loadingA: false, data: data});
-                    document.getElementById("title").value =data.title;
-                    document.getElementById("subTitle").value = data.subtitle;
-                    document.getElementById("imgUrl").value =data.imgUrl;
+                    this.setState({title:data.title});
+                    this.setState({subTitle:data.subTitle});
+                    this.setState({imgUrl:data.imgUrl});
                     this.setState({value:data.type});
                 }
             ).catch(
@@ -102,7 +108,8 @@ export default class Write extends Component{
         let data = new Object;
 
         if(this.props.params.file != 'new'){
-           data.fileDir = this.props.params.file;
+            data.fileDir = this.props.params.file;
+            data.ope = 'update';
         }else {
             let uuid = ()=>{
                 let S4 = ()=>{
@@ -153,27 +160,35 @@ export default class Write extends Component{
     render(){
         return(
             <div>
-                <TextField
-                    id="title"
-                    hintText="来写标题吧！"
-                    fullWidth={true}
-                />
-                <TextField
-                    id="subTitle"
-                    hintText="副标题，最好写哦"
-                    fullWidth={true}
-                />
-                <TextField
-                    id="imgUrl"
-                    hintText="封面"
-                    fullWidth={true}
-                />
+                {
+                    this.state.loadingA || <div style={styles.div}> <TextField
+                        id="title"
+                        hintText="来写标题吧！"
+                        fullWidth={true}
+                        value={this.state.title}
+                    />
+                        <TextField
+                            id="subTitle"
+                            hintText="副标题，最好写哦"
+                            fullWidth={true}
+                            value={this.state.subTitle}
+                        />
+                        <TextField
+                            id="imgUrl"
+                            hintText="封面"
+                            fullWidth={true}
+                            value={this.state.imgUrl}
+                        /></div>
+
+                }
+
 
                 {this.state.loadingA ?
                     (<Paper style={styles.paper} zDepth={3} rounded={false}>
                     <CircularProgress style={styles.circularprogress} size={150} thickness={5} />
                     </Paper>)
-                :((this.state.error==null)?<Editer content ={this.state.data.content}/>:
+                :((this.state.error==null)?
+                    (this.state.data==null?<Editer/>:<Editer content ={this.state.data.content}/>):
                     <Paper style={styles.paper} zDepth={3} rounded={false}><p>{this.state.error}</p></Paper>)}
                 <SelectField
                     floatingLabelText="类型"
