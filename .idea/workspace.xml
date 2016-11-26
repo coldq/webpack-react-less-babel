@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="09abd7c7-1c89-4f4f-a0f2-fea3675b7bb1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysqlConfig.js" afterPath="$PROJECT_DIR$/mysqlConfig.js" />
     </list>
     <ignored path="nodeBack.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -855,7 +854,7 @@
       <workItem from="1479696669505" duration="34536000" />
       <workItem from="1479984328432" duration="9071000" />
       <workItem from="1480146867868" duration="72000" />
-      <workItem from="1480167021863" duration="953000" />
+      <workItem from="1480167021863" duration="1027000" />
     </task>
     <task id="LOCAL-00001" summary="v8">
       <created>1479898939105</created>
@@ -899,11 +898,18 @@
       <option name="project" value="LOCAL" />
       <updated>1480167569348</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="v9">
+      <created>1480167982742</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1480167982742</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70245000" />
+    <option name="totallyTimeSpent" value="70319000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
