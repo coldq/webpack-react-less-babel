@@ -170,12 +170,18 @@ router.post('/:io', function(req, res, next) {
         * */
         case "getCount":{
             let countSQL = 'SELECT COUNT( * ) AS count FROM article '
-            if(req.body.type !== undefined){
+            if(req.body.type !== "all"){
                 countSQL +='where type="'+req.body.type+'"';
             }
             sqlOp(countSQL).then(
-                result=> res.send(result[0])
-            ).catch(err=>res.send(err));
+                result=> {
+                    res.send(result[0]);
+                    console.log("count:"+result[0].count+"条sssssssssssssssssssssssssssssssssss\n")
+                }
+            ).catch(err=>{
+                res.send(err);
+                console.log(err)
+            });
         }
         break;
 

@@ -28,7 +28,7 @@
       <mandatory>1</mandatory>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="10" parent="4" name="subtitle">
+    <column id="10" parent="4" name="subTitle">
       <data-type>varchar(255)|0</data-type>
     </column>
     <column id="11" parent="4" name="type">
