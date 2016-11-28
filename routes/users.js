@@ -173,6 +173,7 @@ router.post('/:io', function(req, res, next) {
             if(req.body.type !== "all"){
                 countSQL +='where type="'+req.body.type+'"';
             }
+            console.log(countSQL)
             sqlOp(countSQL).then(
                 result=> {
                     res.send(result[0]);
