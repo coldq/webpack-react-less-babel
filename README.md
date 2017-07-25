@@ -2,6 +2,15 @@
 
 包括React-redux、React-thunk、Eslint、Jest、SASS等
 
+开始：
+
+```
+yarn (or :npm install)
+yarn start (or: npm start)
+//http://localhost:3000/
+//简单实现redux counter和thunk异步加载
+```
+
 ## Technologies
 Slingshot offers a rich development experience using the following technologies:
 
