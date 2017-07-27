@@ -8,7 +8,7 @@ import {
 export function getArticle(filename) {
    return async(dispatch) => { //getState
      try{
-        let data =await request(`http://localhost:3008/getArticle/${filename}`)
+        let data =await request(`http://localhost:3008/getArticle/${filename}`);
         dispatch(articleLoaded(data.data));
      }catch(error){
         dispatch(articleLoadingError(error));

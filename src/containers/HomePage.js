@@ -12,6 +12,7 @@ export const HomePage = (props) =>{
         <Home {...props}/>
     );
 };
+
 HomePage.propTypes = {
   actions: PropTypes.object.isRequired,
   currentPage:PropTypes.number.isRequired,

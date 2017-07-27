@@ -4,6 +4,7 @@ import {Menu,Icon,Row,Col,Popover} from 'antd';
 import React, { PureComponent } from 'react';
 import logo from '../../image/sunflower.svg';
 import './style.scss';
+import { Link, IndexLink } from 'react-router';
 // const SubMenu = Menu.SubMenu;
 // const MenuItemGroup = Menu.ItemGroup;
 const content = (
@@ -44,13 +45,13 @@ class Header extends PureComponent {
                    <a href="https://github.com" target="_blank" rel="noopener noreferrer"><Icon type="github" />ColdQ</a>
                 </Menu.Item>
                 <Menu.Item key="tag"  style = {{float:'right'}}>
-                  <Icon type="tag-o" />标签
+                  <Icon type="edit" />写文章
                 </Menu.Item>
                 <Menu.Item key="categories"  style = {{float:'right'}}>
                   <Icon type="appstore-o" />分类
                 </Menu.Item>
                 <Menu.Item key="index" style = {{float:'right'}}>
-                  <Icon type="coffee" />首页
+                  <IndexLink to="/"><Icon type="coffee" />首页</IndexLink>
                 </Menu.Item>
               </Menu>            
             </Col>

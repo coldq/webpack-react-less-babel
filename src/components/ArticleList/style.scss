@@ -1,23 +1,26 @@
-// $blue: #1875e7;
-
-// @media screen and (max-width: 500px){
-//    .list{
-//       width: 95%;
-//    }
-// }
-// @media screen and  (min-width:500px) and (max-width:960px){
-//    .list{
-//       width: 80%;
-//    }
-// }
-// @media screen and  (min-width:960px) and (max-width:1400px){
-//    .list{
-//       width: 70%;
-//    }
-// }
-// @media screen and (min-width: 1400px){
-//    .list{
-//       width: 60%;
-//    }
-// }
+.hide-img{
+    img{
+        display: none;
+    }
+}
+.header{
+    a{
+        color: rgba(0, 0, 0, 0.80);
+    }
+}
+.tags{
+    font-size: 15px;
+    margin: 8px 0;
+}
+.art-info{
+    margin: 8px 0;
+    font-size: 17px;
+}
+.author{
+    margin: 8px 0 20px 0;
+    font-size: 14px;
+}
+.more{
+    font-size: 14px;
+}
 

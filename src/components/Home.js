@@ -29,10 +29,11 @@ class Home extends PureComponent {
 			});
 		}
 		if(error)content = <p>{error}</p>;
+
 		return(
-			<Row type="flex" justify="center" style={{marginTop:'36px'}} >
+			<Row type="flex" justify="center" style={{marginTop:'36px',marginBottom:'36px'}} >
 				
-				<Col xs={24} sm={24} md={20} lg={28} xl={16} >
+				<Col xs={22} sm={22} md={18} lg={16} xl={14} >
 					{content}
 				</Col>
 
@@ -47,6 +48,8 @@ class Home extends PureComponent {
 }
 Home.PropTypes = {
 	actions:PropTypes.object.isRequired,
+	currentPage:PropTypes.number.isRequired,
+	blog:PropTypes.object.isRequired
 };
 
 export default Home;

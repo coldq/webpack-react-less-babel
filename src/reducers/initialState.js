@@ -3,7 +3,7 @@ import { fromJS } from 'immutable';
 
 export default {
     currentPage:1,
-    article:false,
+    article:'',
     blog:fromJS({
         loading: false,
         error: false,
