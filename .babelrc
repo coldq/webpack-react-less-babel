@@ -1,0 +1,10 @@
+{
+  "presets":[
+    "env",
+    "react",
+    "stage-1"],
+  "plugins": [
+    ["import", { libraryName: "antd", style: "css" }] ,
+    ["transform-class-properties", { "spec": true }]
+  ]
+}

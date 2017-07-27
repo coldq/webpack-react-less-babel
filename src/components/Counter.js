@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Button from 'antd/lib/button';
+import {Button} from 'antd';
 
 class Counter extends Component {
   constructor(props) {

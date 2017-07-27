@@ -1,14 +1,12 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import App from './containers/App';
-import HomePage from './components/HomePage';
-import Count from './containers/CountPage';
-import Async from './containers/asyncPage';
+import Home from './containers/HomePage';
+import Article from './components/Article/index';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={HomePage}/>
-     <Route path="count" component={Count}/>  
-     <Route path="async" component={Async}/>        
+    <IndexRoute component={Home}/>
+     <Route path="article/:file" component={Article}/>         
   </Route>
 );

@@ -1,12 +1,16 @@
 // Set up your root reducer here...
  import { combineReducers } from 'redux';
  import {routerReducer} from 'react-router-redux';
- import count from './countReducer';
+ import currentPage from './pageReducer';
  import asyncReducer from './asyncReducer';
+ import blog from './blogReducer';
+ import articleReducer from './articleReducer';
 
 const rootReducer = combineReducers({
-  count,
+  currentPage,
   asyncReducer,
+  article:articleReducer,
+  blog,
   routing: routerReducer
 });
 

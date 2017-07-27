@@ -1,0 +1,32 @@
+.Logo {
+  animation: logo-spin infinite 20s linear;
+  height: 44px;
+  margin:8px;
+  float: left;
+}
+.wapper{
+    background-color:#404040;
+    color: rgba(255, 255, 255, 0.67);
+    overflow-y: hidden;
+}
+@keyframes logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.title{
+    line-height: 64px;
+    float: left;
+    font-size: 16px;
+    font-family: Raleway,Hiragino Sans GB,sans-serif;
+    height: 64px;
+    // text-transform: uppercase;
+}
+.pop-content{
+    font-size: 14px;
+    width: 64px;
+    p:{
+        line-height: 20px;
+
+    }
+}

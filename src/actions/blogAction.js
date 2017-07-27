@@ -16,49 +16,61 @@
  */
 import request from '../utils/request';
 import {
-  LOAD_REPOS,
-  LOAD_REPOS_SUCCESS,
-  LOAD_REPOS_ERROR,
+  LOAD_BLOG_SUCCESS,
+  LOAD_BLOG,
+  LOAD_BLOG_ERROR,
+  PAGE_CHANGE
 } from '../constants';
 
-/**
- * Load the repositories, this action starts the request saga
- *
- * @return {object} An action object with a type of LOAD_REPOS
- */
-export function loadRepos() {
+
+export function loadBlogs(currentPage,type) {
    return async(dispatch) => { //getState
      try{
         dispatch(BeforeLoadRepos());
-        await request('https://api.github.com/users/coldQ/repos?type=all&sort=updated')
-        .then(res => {
-          dispatch(reposLoaded(res,'coldq'));
-        });
+          if(type !== void 0){
+            await request(`http://localhost:3008/getBlogsByType/${currentPage-1}/${type}`);
+          }
+          else await request(`http://localhost:3008/getBlogs/${currentPage-1}`)
+                    .then(res => {
+                      dispatch(reposLoaded(res,'coldq'));
+                    });
      }catch(error){
         dispatch(repoLoadingError(error));
      }
    };
 }
+export function changePage(pageNum){
+  return {
+    type: PAGE_CHANGE,
+    pageNum
+  };
 
+}  
+/**
+ * Load the repositories, this action starts the request saga
+ *
+ * @return {object} An action object with a type of LOAD_REPOS
+ */
 export function BeforeLoadRepos(){
   return {
-      type: LOAD_REPOS,
+      type: LOAD_BLOG,
   };
 }
 
 /**
  * Dispatched when the repositories are loaded by the request saga
  *
- * @param  {array} repos The repository data
- * @param  {string} username The current username
+ * @param  {object} data  The blogs data
+ * @param  {string} sum The blogs summary
  *
- * @return {object}      An action object with a type of LOAD_REPOS_SUCCESS passing the repos
+ * @return {object}      An action object with a type of LOAD_BLOG_SUCCESS passing the repos
  */
-export function reposLoaded(repos, username) {
+export function reposLoaded(data) {
+  let sum = data.sum, blogs = data.blogs;
   return {
-    type: LOAD_REPOS_SUCCESS,
-    repos,
-    username,
+    type: LOAD_BLOG_SUCCESS,
+    sum,
+    blogs,
   };
 }
 
@@ -71,7 +83,7 @@ export function reposLoaded(repos, username) {
  */
 export function repoLoadingError(error) {
   return {
-    type: LOAD_REPOS_ERROR,
+    type: LOAD_BLOG_ERROR,
     error,
   };
 }

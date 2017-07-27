@@ -2,7 +2,16 @@
 import { fromJS } from 'immutable';
 
 export default {
-    count:1,
+    currentPage:1,
+    article:false,
+    blog:fromJS({
+        loading: false,
+        error: false,
+        data:{
+            sum:false,
+            bloglist:false
+        }
+    }),
     async:fromJS({
         loading: false,
         error: false,

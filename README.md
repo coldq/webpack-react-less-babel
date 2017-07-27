@@ -7,8 +7,8 @@
 ```
 yarn (or :npm install)
 yarn start (or: npm start)
-//http://localhost:3000/
-//简单实现redux counter和thunk异步加载
+// http://localhost:3000/
+// 简单实现redux counter和thunk异步加载
 ```
 
 ## Technologies
