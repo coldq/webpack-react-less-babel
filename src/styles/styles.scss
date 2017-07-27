@@ -60,6 +60,10 @@ article, aside, blockquote, body, button, code, dd, details, div, dl, dt, fields
         margin-bottom: 16px;
         padding:10px 10px;
    }
+    .ant-back-top {
+        bottom: 60px;
+        right: 40px;
+    }
 }
 @media screen and  (min-width:500px) and (max-width:960px){
    .content{

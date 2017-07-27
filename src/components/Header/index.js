@@ -45,13 +45,13 @@ class Header extends PureComponent {
                    <a href="https://github.com" target="_blank" rel="noopener noreferrer"><Icon type="github" />ColdQ</a>
                 </Menu.Item>
                 <Menu.Item key="tag"  style = {{float:'right'}}>
-                  <Icon type="edit" />写文章
+                  <Icon type="edit" />编写
                 </Menu.Item>
                 <Menu.Item key="categories"  style = {{float:'right'}}>
                   <Icon type="appstore-o" />分类
                 </Menu.Item>
                 <Menu.Item key="index" style = {{float:'right'}}>
-                  <IndexLink to="/"><Icon type="coffee" />首页</IndexLink>
+                  <IndexLink to="/"><Icon type="coffee" />文章</IndexLink>
                 </Menu.Item>
               </Menu>            
             </Col>
